@@ -8,7 +8,7 @@ export const ProductList = () => {
     const { productTypes, getProductTypes } = useContext(ProductTypeContext)
 
     useEffect(() => {
-        getProducts().then(getProductTypes)
+        getProductTypes().then(getProducts)
     }, [])
 
 
