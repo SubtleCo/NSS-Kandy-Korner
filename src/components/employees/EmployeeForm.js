@@ -29,8 +29,13 @@ export const EmployeeForm = () => {
             selectedVal = parseInt(selectedVal)
         }
 
-        newEmployee[e.target.id] = selectedVal
+        if (e.target.type === "checkbox") {
+            selectedVal = e.target.checked
+        }
 
+        newEmployee[e.target.id] = selectedVal
+        
+        console.log(newEmployee)
         setEmployee(newEmployee)
     }
 

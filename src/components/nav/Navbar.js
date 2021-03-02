@@ -6,16 +6,16 @@ export const NavBar = (props) => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
-                <Link classname="navbar__link" to="/">NSS Kandy Korner</Link>
+                <Link className="navbar__link" to="/">NSS Kandy Korner</Link>
             </li>
             <li className="navbar__item">
-                <Link classname="navbar__link" to="/locations">Locations</Link>
+                <Link className="navbar__link" to="/locations">Locations</Link>
             </li>
             <li className="navbar__item">
-                <Link classname="navbar__link" to="/products">Products</Link>
+                <Link className="navbar__link" to="/products">Products</Link>
             </li>
             <li className="navbar__item">
-                <Link classname="navbar__link" to="/employees">Employees</Link>
+                <Link className="navbar__link" to="/employees">Employees</Link>
             </li>
         </ul>
     )
