@@ -14,13 +14,13 @@ export const ProductList = () => {
 
 
     return (
-        <article className="products">
+        <section className="products">
             {
                 products.map(product => {
                     const productType = productTypes.find(pT => pT.id === product.productTypeId)
                     return <ProductCard key={product.id} product={product} productType={productType}/>
                 })
             }
-        </article>
+        </section>
     )
 }
