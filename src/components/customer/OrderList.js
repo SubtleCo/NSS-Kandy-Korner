@@ -4,32 +4,31 @@ import { ProductContext } from '../products/ProductProvider'
 import { CustomerContext } from './CustomerProvider'
 import { OrderCard } from './OrderCard'
 
-export const CustomerOrder = () => {
-    const { customerId } = useContext(CustomerContext)
+export const OrderList = () => {
+    const { customerId, customerOrder, setCustomerOrder } = useContext(CustomerContext)
     const { products, getProducts } = useContext(ProductContext)
     const { customerProducts, getCustomerProducts } = useContext(CustomerProductContext)
-    let [orderArray, setOrderArray] = useState([])
 
     useEffect(() => {
         getCustomerProducts()
             .then(getProducts)
             .then(() => {
                 const thisCustomersProducts = customerProducts.filter(cP => cP.customerId === customerId)
-                setOrderArray(thisCustomersProducts)
+                setCustomerOrder(thisCustomersProducts)
             })
-
     }, [])
 
-    console.log(`order array` + orderArray)
     return (
         <section className="customerOrder">
+            {console.log(customerOrder)}
             <h2 className="customerOrder__title">Your Order</h2>
             {
-                orderArray.map(customerProduct => {
+                customerOrder.map(customerProduct => {
                     const product = products.find(p => p.id === customerProduct.productId)
                     return <OrderCard key={customerProduct.id} product={product} />
                 })
             }
         </section>
+        
     )
 }
