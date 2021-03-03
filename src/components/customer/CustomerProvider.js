@@ -7,7 +7,7 @@ export const CustomerProdivder = props => {
 
     useEffect(() => {
         setCustomerId(parseInt(localStorage.getItem("kandy_customer")))
-    })
+    }, [])
 
     return (
         <CustomerContext.Provider value={{
