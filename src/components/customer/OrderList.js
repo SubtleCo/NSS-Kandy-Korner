@@ -12,11 +12,12 @@ export const OrderList = () => {
     useEffect(() => {
         getCustomerProducts()
             .then(getProducts)
-            .then(() => {
-                const thisCustomersProducts = customerProducts.filter(cP => cP.customerId === customerId)
-                setCustomerOrder(thisCustomersProducts)
-            })
     }, [])
+
+    useEffect(() => {
+        const thisCustomersProducts = customerProducts.filter(cP => cP.customerId === customerId)
+        setCustomerOrder(thisCustomersProducts)
+    }, [products, customerProducts])
 
     return (
         <section className="customerOrder">
