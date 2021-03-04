@@ -20,45 +20,49 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
 
-            <LocationProvider>
-                <Route path="/locations">
-                    <LocationList />
-                </Route>
-            </LocationProvider>
-
-            <CustomerProvider>
-                <ProductProvider>
-                    <CustomerProductProvider>
-                        <ProductTypeProvider>
-                            
-                            <Route path="/products">
-                                <ProductList />
-                            </Route>
-                            
-                            <Route path="/order">
-                                <OrderList />
-                            </Route>
-                        
-                        </ProductTypeProvider>
-                    </CustomerProductProvider>
-                </ProductProvider>
-            </CustomerProvider>
-
-            <EmployeeProvider>
+            <Route path="/locations">
                 <LocationProvider>
-
-                    <Route exact path="/employees">
-                        <EmployeeList />
-                    </Route>
-
-                    <Route path="/employees/create">
-                        <EmployeeForm />
-                    </Route>
-
-
+                    <LocationList />
                 </LocationProvider>
-            </EmployeeProvider>
+            </Route>
 
+            <Route path="/products">
+                <ProductTypeProvider>
+                    <ProductProvider>
+                        <CustomerProvider>
+                            <CustomerProductProvider>
+                                <ProductList />
+                            </CustomerProductProvider>
+                        </CustomerProvider>
+                    </ProductProvider>
+                </ProductTypeProvider>
+            </Route>
+
+            <Route path="/order">
+                <CustomerProvider>
+                    <ProductProvider>
+                        <CustomerProductProvider>
+                            <OrderList />
+                        </CustomerProductProvider>
+                    </ProductProvider>
+                </CustomerProvider>
+            </Route>
+
+            <Route exact path="/employees">
+                <EmployeeProvider>
+                    <LocationProvider>
+                        <EmployeeList />
+                    </LocationProvider>
+                </EmployeeProvider>
+            </Route>
+
+            <Route path="/employees/create">
+                <EmployeeProvider>
+                    <LocationProvider>
+                        <EmployeeForm />
+                    </LocationProvider>
+                </EmployeeProvider>
+            </Route>
 
         </>
     )
