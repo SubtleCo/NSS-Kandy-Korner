@@ -25,11 +25,12 @@ export const OrderList = () => {
             <h2 className="customerOrder__title">Your Order</h2>
             {
                 customerOrder.map(customerProduct => {
-                    const product = products.find(p => p.id === customerProduct.productId)
-                    return <OrderCard key={customerProduct.id} product={product} />
+                    if (products.length !== 0) {
+                        const product = products.find(p => p.id === customerProduct.productId)
+                        return <OrderCard key={customerProduct.id} product={product} />
+                    }
                 })
             }
         </section>
-        
     )
 }
