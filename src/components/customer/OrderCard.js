@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const OrderCard = ({product}) => {
+export const OrderCard = ({ name, count, price }) => {
     return (
         <div className="customerOrder__product">
-        <h4 className="customerOrder__product__name">{product.name}</h4>
-        <p className="customerOrder__product__price">${product.price}</p>
-    </div>
+            <h4 className="customerOrder__product__name">{name}</h4>
+            <p className="customerOrder__product__price">{count} @ ${price}</p>
+        </div>
     )
 }

@@ -24,11 +24,9 @@ export const OrderList = () => {
             {console.log(customerOrder)}
             <h2 className="customerOrder__title">Your Order</h2>
             {
-                customerOrder.map(customerProduct => {
-                    if (products.length !== 0) {
-                        const product = products.find(p => p.id === customerProduct.productId)
-                        return <OrderCard key={customerProduct.id} product={product} />
-                    }
+                products.map(prod => {
+                    const count = customerOrder.filter(item => item.productId === prod.id).length
+                    if (count > 0) return <OrderCard key={prod.id} name={prod.name} count={count} price={prod.price} />
                 })
             }
         </section>
