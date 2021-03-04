@@ -1,11 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import { OrderList } from './customer/OrderList'
+import { CustomerProvider } from './customer/CustomerProvider'
 import { EmployeeForm } from './employees/EmployeeForm'
 import { EmployeeList } from './employees/EmployeeList'
 import { EmployeeProvider } from './employees/EmployeeProvider'
 import { Home } from './Home'
 import { LocationList } from './locations/LocationList'
 import { LocationProvider } from './locations/LocationProvider'
+import { CustomerProductProvider } from './products/CustomerProductProvider'
 import { ProductList } from './products/ProductList'
 import { ProductProvider } from './products/ProductProvider'
 import { ProductTypeProvider } from './products/ProductTypeProvider'
@@ -17,35 +20,49 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
 
-            <LocationProvider>
-                <Route path="/locations">
-                    <LocationList />
-                </Route>
-            </LocationProvider>
-
-            <ProductProvider>
-                <ProductTypeProvider>
-                    <Route path="/products">
-                        <ProductList />
-                    </Route>
-                </ProductTypeProvider>
-            </ProductProvider>
-
-            <EmployeeProvider>
+            <Route path="/locations">
                 <LocationProvider>
-
-                    <Route exact path="/employees">
-                        <EmployeeList />
-                    </Route>
-
-                    <Route path="/employees/create">
-                        <EmployeeForm />
-                    </Route>
-
-
+                    <LocationList />
                 </LocationProvider>
-            </EmployeeProvider>
+            </Route>
 
+            <Route path="/products">
+                <ProductTypeProvider>
+                    <ProductProvider>
+                        <CustomerProvider>
+                            <CustomerProductProvider>
+                                <ProductList />
+                            </CustomerProductProvider>
+                        </CustomerProvider>
+                    </ProductProvider>
+                </ProductTypeProvider>
+            </Route>
+
+            <Route path="/order">
+                <CustomerProvider>
+                    <ProductProvider>
+                        <CustomerProductProvider>
+                            <OrderList />
+                        </CustomerProductProvider>
+                    </ProductProvider>
+                </CustomerProvider>
+            </Route>
+
+            <Route exact path="/employees">
+                <EmployeeProvider>
+                    <LocationProvider>
+                        <EmployeeList />
+                    </LocationProvider>
+                </EmployeeProvider>
+            </Route>
+
+            <Route path="/employees/create">
+                <EmployeeProvider>
+                    <LocationProvider>
+                        <EmployeeForm />
+                    </LocationProvider>
+                </EmployeeProvider>
+            </Route>
 
         </>
     )

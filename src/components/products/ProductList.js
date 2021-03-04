@@ -12,9 +12,10 @@ export const ProductList = () => {
     }, [])
 
 
-
     return (
         <section className="products">
+            {console.log(products)}
+            {console.log(productTypes)}
             {
                 products.map(product => {
                     const productType = productTypes.find(pT => pT.id === product.productTypeId)
