@@ -26,7 +26,8 @@ export const OrderList = () => {
             {
                 products.map(prod => {
                     const count = customerOrder.filter(item => item.productId === prod.id).length
-                    if (count > 0) return <OrderCard key={prod.id} name={prod.name} count={count} price={prod.price} />
+                    const totalCost = count*prod.price
+                    if (count > 0) return <OrderCard key={prod.id} name={prod.name} count={count} price={prod.price} totalCost={totalCost} />
                 })
             }
         </section>
