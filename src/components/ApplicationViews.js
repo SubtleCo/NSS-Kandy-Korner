@@ -13,6 +13,7 @@ import { ProductList } from './products/ProductList'
 import { ProductProvider } from './products/ProductProvider'
 import { ProductTypeProvider } from './products/ProductTypeProvider'
 import { CustomerList } from './customer/CustomerList'
+import { InventorySearch } from './products/InventorySearch'
 
 export const ApplicationViews = () => {
     return (
@@ -32,6 +33,7 @@ export const ApplicationViews = () => {
                     <ProductProvider>
                         <CustomerProvider>
                             <CustomerProductProvider>
+                                <InventorySearch />
                                 <ProductList />
                             </CustomerProductProvider>
                         </CustomerProvider>

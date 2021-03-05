@@ -4,6 +4,7 @@ export const ProductContext = createContext()
 
 export const ProductProvider = props => {
     const [products, setProducts] = useState([])
+    const [searchQuery, setSearchQuery] = useState("")
 
     const getProducts = () => {
         return fetch(`http://localhost:8088/products`)
@@ -24,7 +25,7 @@ export const ProductProvider = props => {
 
     return (
         <ProductContext.Provider value={{
-            products, getProducts, addProduct
+            products, getProducts, addProduct, searchQuery, setSearchQuery
         }}>
             {props.children}
         </ProductContext.Provider>
