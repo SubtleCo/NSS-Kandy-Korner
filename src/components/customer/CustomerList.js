@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CustomerProductContext } from '../products/CustomerProductProvider'
 import { CustomerCard } from './CustomerCard'
 import { CustomerContext } from './CustomerProvider'
@@ -6,18 +6,25 @@ import { CustomerContext } from './CustomerProvider'
 export const CustomerList = () => {
     const { customers, getCustomers } = useContext(CustomerContext)
     const { customerProducts, getCustomerProducts } = useContext(CustomerProductContext)
+    const [sortedCustomers, setSortedCustomers] = useState([])
+    let customersWithCounts = []
 
     useEffect(() => {
-        getCustomerProducts().then(getCustomers)
+        getCustomerProducts().then(getCustomers).then(() => {
+            customersWithCounts = customers.map(customer => {
+                customer.count = customerProducts.filter(cP => cP.customerId === customer.id).length
+                return customer
+            })
+            setSortedCustomers(customersWithCounts.sort((a,b) => b.count - a.count))
+        })
     }, [])
     
     return (
         <div className="customers">
-            {/* <h2>Hello, customers</h2> */}
+            <h2>Hello, customers</h2>
             {
-                customers.map(customer => {
-                    const count = customerProducts.filter(cP => cP.customerId === customer.id).length
-                    return <CustomerCard key={customer.id} customer={customer} count={count}/>
+                sortedCustomers.map(customer => {
+                    return <CustomerCard key={customer.id} customer={customer}/>
                 })
             }
         </div>
